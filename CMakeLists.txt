@@ -4,16 +4,26 @@ project(MyBTProject LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Add your executable
-add_executable(main_bt src/main.cpp)
+# Source files
+set(SOURCES
+    src/main.cpp
+    src/BTtoLTLConverter.cpp
+)
+
+# Include directory for headers
+include_directories(include)
+
+# Add executable
+add_executable(main_bt ${SOURCES})
 
 # Include BT.CPP headers
 target_include_directories(main_bt PRIVATE /usr/local/include)
 
 # Link BT.CPP library
 target_link_libraries(main_bt PRIVATE behaviortree_cpp)
-set(SPOT_PREFIX "/opt/homebrew/opt/spot")
 
+# Spot library
+set(SPOT_PREFIX "/opt/homebrew/opt/spot")
 target_include_directories(main_bt PRIVATE ${SPOT_PREFIX}/include)
 
 target_link_libraries(main_bt PRIVATE
