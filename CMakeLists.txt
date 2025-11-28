@@ -7,7 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Source files
 set(SOURCES
     src/main.cpp
-    src/BTtoLTLConverter.cpp
+    src/BTtoBuchiConverter.cpp
+    src/BuchiNode.cpp
 )
 
 # Include directory for headers
