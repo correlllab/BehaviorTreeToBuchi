@@ -1,4 +1,11 @@
-Through this safety analysis, we identified an error in our original Behavior Tree design. There was an unsafe state where the humanoid would attempt to unscrew a bolt that the robotic arm hadn't already unscrewed. Therefore, we were able to correct the Behavior Trees to ensure that the robotic arm always unscrews the bolt before the humanoid attempts to remove it. 
+Through this safety analysis, we identified an error in our original Behavior Tree design. There was an unsafe state where the humanoid would attempt to unscrew a bolt that the robotic arm hadn't already unscrewed. Therefore, we were able to correct the Behavior Trees to ensure that the robotic arm always unscrews the bolt before the humanoid attempts to remove it. A partial example run demonstrating this failure of the system is shown in Figure~\ref{fig:bad}.
+
+\begin{figure}[H]
+        \centering
+        \includegraphics[width=\textwidth]{BadRun.png}
+        \caption{An example run demonstrating undesirable behavior.}
+        \label{fig:bad}
+\end{figure}
 
 \begin{figure}[H]
     \centering
