@@ -26,6 +26,8 @@
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
 \newcommand{\comment}[1]{\textcolor{red}{#1}}
 
 \jmlrheading{}{}{1-\pageref{LastPage}}{Dec. 5, 2025}{}{}{}
@@ -53,15 +55,12 @@
 \maketitle
 
 \begin{abstract}%   <- trailing '%' for backward compatibility of .sty file
-    Behavior Trees are structures commonly used in robotics breaking down complicated tasks into subtasks and organizing them into easily readable and programable structures. Unfortunately, it is difficult to perform a formal safety analysis on Behavior Trees, especially when having multiple robots performing different tasks in parallel. In this paper, we algorithmically convert Behavior Trees to basic State Machines, and proceed to combine two different constructed State Machines by taking the product space. This process allows for a simple safety check using reachability of the system to unsafe states. We apply this technique to a complicated Electric Vehicle battery dissasembly task, where a humanoid robot and 6DOF robotic arm are required to operate collaboratively. This demonstrates a specific application for this generalizable method.
+    Behavior Trees are structures commonly used in robotics breaking down complicated tasks into subtasks and organizing them into easily readable and programable structures. However, Behavior Trees provide limited support for formal safety analysis, and the challenge grows significantly when multiple robots operate in parallel. In this paper, we formalize a conversion process between Behavior Trees and Finite State Machines. We apply this conversion process to two separate Behavior Trees used in an electric vehicle battery disassembly task involving a humanoid robot and a 6DOF robotic arm working in parallel. After the conversion, we combine the two constructed Finite State Machines by taking the product space. This process allows for a formal safety checking using reachability on selected unsafe states in the product Finite State Machines. This demonstrates a specific application for this generalizable method which can be used to verify and/or modify the design of the original Behavior Trees.
 \end{abstract}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 \input{intro}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Problem Description}
@@ -71,8 +70,6 @@
 \section{Methodology}
 \input{method}
 
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Results} 
 \input{results}
@@ -80,20 +77,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Conclusion} 
 \input{conclusion}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\acks{}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% remove the following if Appendix is not needed.
-\appendix
-\section{}
-
-\section{}
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \vskip 0.2in

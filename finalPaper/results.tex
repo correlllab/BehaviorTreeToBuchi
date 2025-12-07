@@ -1,0 +1,22 @@
+Through this safety analysis, we identified an error in our original Behavior Tree design. There was an unsafe state where the humanoid would attempt to unscrew a bolt that the robotic arm hadn't already unscrewed. Therefore, we were able to correct the Behavior Trees to ensure that the robotic arm always unscrews the bolt before the humanoid attempts to remove it. 
+
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{original_bt.png}
+        \caption{Original Behavior Tree for the H12-Unitree humanoid robot.}
+        \label{fig:BT_arm}
+    \end{subfigure}
+    \hspace{0.04\textwidth} % Adjust this if needed
+    \begin{subfigure}[b]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{fixed-bt.png}
+        \caption{Fixed Behavior Tree for the H12-Unitree humanoid robot.}
+        \label{fig:BT_humanoid}
+    \end{subfigure}
+    \caption{Behavior Trees for both robots.}
+    \label{fig:correction_bt}
+\end{figure}
+
+Figure \ref{fig:correction_bt} demonstrates the effectiveness of our methodology in identifying and rectifying safety issues in multi-robot Behavior Trees. For this simple example, the process required only a single iteration to achieve a safe design. More complex scenarios may necessitate multiple iterations, but our approach provides a clear framework for systematically enhancing the safety of multi-robot systems through formal analysis and targeted BT refinement.

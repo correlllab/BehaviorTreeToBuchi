@@ -1,5 +1,32 @@
-For formal safety analysis, we propose the following methodology: We Algorithmically construct State Machines 
+To enable formal safety assessment of multi-robot Behavior Trees, we establish a systematic workflow that converts each robot’s BT into an explicit state-machine model and analyzes the resulting combined system for unsafe interactions. Our method begins by algorithmically translating the Behavior Trees for both the UR16e robotic arm and the humanoid robot into finite-state machines representing all possible execution outcomes, including success, failure, and fallback behavior. 
 
-\subsection{Algorithmic Construction of State Machines}
+\begin{figure}[H]
+    \centering
+    
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{arm-state-machine.png}
+        \caption{State machine for the UR16e robotic arm.}
+        \label{fig:ur_fsm}
+    \end{subfigure}
+    \hspace{0.04\textwidth} % Adjust this if needed
+    \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{humanoid-state-machine.png}
+        \caption{State machine for the H1-Unitree humanoid robot.}
+        \label{fig:h1_fsm}
+    \end{subfigure}
+    
+    \caption{State machines for both robots.}
+    \label{fig:both_fsms}
+\end{figure}
 
-\subsection{Reduction of Product Space}
+We then synchronously compose these state machines to form a product automaton that captures the full range of joint behaviors when the robots operate concurrently.
+
+INSERT FIGURE OF PRODUCT STATE MACHINES HERE
+
+Because not all modeled outcomes correspond to physically realizable behavior, a human-guided refinement step is performed to identify unsafe and success states and remove impossible transitions based on workspace constraints and task semantics.
+
+INSERT FIGURE OF ADJUSTED PRODUCT AUTOMATON HERE
+
+With this annotated product system, we apply reachability analysis to determine whether any unsafe configurations can be encountered during execution. If unsafe states are reachable, we trace the corresponding paths back to the original Behavior Trees, informing targeted redesign of specific branches. This process is iterative, allowing updates to the BTs to be re-evaluated until all identified unsafe behaviors are eliminated.

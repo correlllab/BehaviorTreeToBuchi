@@ -1,27 +1,34 @@
-We apply this proposed methodology to an Electric Vehicle (EV) battery dissasembly task. Within this environment, a H-1 Unitree Robot \comment{cite} and UR16e Robotic arm \comment{cite} are tasked with removing the protective cover from an EV battery. The first step to this process is removal of nuts fastening this protective cover. There are three main steps to this process: First, a scan of the battery must be complete to identify nut locations. Following this, the robotic arm will go from nut to nut, unscrewing each one. The humanoid will follow the robotic arm removing each nut once it has been unscrewed. We focus on the latter two steps, assuming nut locations are already known. This workspace is shown in Figure~\ref{fig:workspace}.
+We apply this proposed methodology to an Electric Vehicle (EV) battery dissasembly task. Within this environment, a H-1 Unitree Robot \comment{cite} and UR16e Robotic arm \comment{cite} are tasked with removing the protective cover from an EV battery.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{humanoid_and_battery.png}
-    \caption{An H1-Unitree and UR16e positioned to collaborate on removing nuts from an EV battery protective cover.}
+    \includegraphics[width=0.3\textwidth]{humanoid_and_battery.png}
+    \caption{An H1-Unitree and UR16e positioned to collaborate on removing  bolts from an EV battery protective cover.}
     \label{fig:workspace}
 \end{figure}
 
+Figure~\ref{fig:workspace} shows the two robots positioned to collaborate on removing the EV battery protective cover. The first step in the removal process is a visual and depth scan of the protective cover to identify and localize the bolts. Following this, the robotic arm will go from bolt to bolt, unscrewing each one. The humanoid will follow the robotic arm removing each bolt once it has been unscrewed.
+
 \subsection{Behavior Tree Formulation}
-For both of the tasks at hand, we construct Behavior Trees to dictate each robots behavior. To ensure safety, each robot must not act within a nut workspace while the other robot is there. Behavior Trees for each robot are shown in Figure~\ref{fig:BT_humanoid} and Figure~\ref{fig:BT_arm}.
+For both of the tasks at hand, we construct Behavior Trees to dictate each robots behavior. To ensure safety, each robot must not act within the same bolt workspace simultaneously. Behavior Trees for each robot are shown below in Figures ~\ref{fig:BT_humanoid} and ~\ref{fig:BT_arm}.
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth]{BT_humanoid.png}
-    \caption{An H1-Unitree and UR16e positioned to collaborate on removing nuts from an EV battery protective cover.}
-    \label{fig:BT_humanoid}
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{BT_arm.png}
+        \caption{Behavior Tree for the UR16e robotic arm.}
+        \label{fig:BT_arm}
+    \end{subfigure}
+    \hspace{0.04\textwidth} % Adjust this if needed
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{BT_humanoid.png}
+        \caption{Behavior Tree for the H12-Unitree humanoid robot.}
+        \label{fig:BT_humanoid}
+    \end{subfigure}
+    \caption{Behavior Trees for both robots.}
+    \label{fig:behavior_trees}
 \end{figure}
 
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width=0.5\textwidth]{BT_arm.png}
-    \caption{An H1-Unitree and UR16e positioned to collaborate on removing nuts from an EV battery protective cover.}
-    \label{fig:BT_arm}
-\end{figure}
-
-It can be seen that the robotic arm will perform the following checks as unscrewing each arm: First it will check if the bolt at the current location is already unscrewed. If so, it proceeds to the next bolt. Otherwise, it checks that the humanoid is not currently at the bolt, and ensures it is at the bolt location, and then proceeds to unscrew the bolt.
+It can be seen that the robotic arm will perform the following checks as unscrewing each bolt: First it will check if the bolt at the current location is already unscrewed. If so, it proceeds to the next bolt. Otherwise, it checks that the humanoid is not currently at the bolt, and ensures it is at the bolt location, and then proceeds to unscrew the bolt. Similarly, the humanoid first checks if the bolt is already removed, and if not, checks that the robotic arm is not currently at the bolt, and then proceeds to remove the bolt.
