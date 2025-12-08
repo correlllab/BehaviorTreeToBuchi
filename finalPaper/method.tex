@@ -23,12 +23,6 @@ To enable formal safety assessment of multi-robot Behavior Trees, we establish a
 
 We then compose these state machines to form a product automaton that captures the full range of joint behaviors when the robots operate concurrently.
 
-\comment{Don't think we need this, will take a lot of space and product space is well defined. Also don't think it provides any visual benefit as it will be huge..}
-INSERT FIGURE OF PRODUCT STATE MACHINES HERE
-
 Because not all modeled outcomes correspond to physically realizable behavior, a human-guided refinement step is performed to identify unsafe and success states and remove impossible transitions based on workspace constraints and task semantics. This change is primarily dictated by tasks from the individual BTs that become fully determined by the task of the other BT. For example, if the humanoid is in state "Arm NOT at Bolt 1" and the arm is in state "Humanoid NOT removing Bolt 2", we know the only possible transition will be "Success, Success".
-
-\comment{also not necessary}
-INSERT FIGURE OF ADJUSTED PRODUCT AUTOMATON HERE
 
 With this annotated product system, we apply reachability analysis to determine whether any unsafe configurations can be encountered during execution. If unsafe states are reachable, we trace the corresponding paths back to the original Behavior Trees, informing targeted redesign of specific branches. This process is iterative, allowing updates to the BTs to be re-evaluated until all identified unsafe behaviors are eliminated.
